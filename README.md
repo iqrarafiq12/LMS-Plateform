@@ -11,6 +11,11 @@ Like any project we will solve problem with followind steps
 4. Testing (optional) 
 5. Refine and improvement
 
+## Languages & Tools
+1. Next.js
+2. Tailwind CSS
+3. Shadcn UI
+
 ## Future Helps
 
 
