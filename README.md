@@ -15,6 +15,7 @@ Like any project we will solve problem with followind steps
 1. Next.js
 2. Tailwind CSS
 3. Shadcn UI
+4. Clerk
 
 ## Future Helps
 
