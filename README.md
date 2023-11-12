@@ -1,4 +1,4 @@
-# Alfarnex project
+# LMS project
 
 ## Getting Started
 Get started commit of alfarnex startup agency website
