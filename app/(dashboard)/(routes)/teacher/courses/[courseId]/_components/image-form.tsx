@@ -29,7 +29,7 @@ const ImageForm = ({
   courseId
 }: ImageFormProps) => {
   
-  console.log("🚀 ~ file: image-form.tsx:31 ~ initialData:", initialData)
+  
   
   const [isEditing, setIsEditing] = useState(false);
 
