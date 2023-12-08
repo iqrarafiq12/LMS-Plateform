@@ -8,6 +8,10 @@ import { CircleDollarSign, LayoutDashboard, ListChecks } from "lucide-react"
 import { TitleForm } from "./_components/title-form"
 import { DescriptionForm } from "./_components/description-form"
 
+import AttachmentForm from "./_components/attachment-form"
+
+import { File } from "lucide-react"
+
 import ImageForm from "./_components/image-form"
 import { CategoryForm } from "./_components/categoryform"
 import { PriceForm } from "./_components/priceform"
@@ -25,6 +29,13 @@ const CourseIdPage = async ({
   const course = await db.course.findUnique({
     where: {
       id: params.courseId
+    },
+    include: {
+      attachments: {
+        orderBy: {
+          createdAt: "desc",
+        },
+      }
     }
   });
   const category = await db.category.findMany({
@@ -107,8 +118,20 @@ const CourseIdPage = async ({
               <h2>Sell your Course</h2>
             </div>
           </div>
+          
           <PriceForm initialData={course} courseId={course.id}/>
+          <div>
+        <div className="flex items-center gap-x-2">
+              <IconBadge icon={File} />
+              <h2>Resources & Attachments</h2>
+            </div>
+            <AttachmentForm
+            initialData={course}
+            courseId={course.id}
+          />
+            </div>
         </div>
+
       </div>
     </div>
   )
