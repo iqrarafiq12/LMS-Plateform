@@ -15,6 +15,7 @@ import { File } from "lucide-react"
 import ImageForm from "../_components/image-form"
 import { CategoryForm } from "../_components/categoryform"
 import { PriceForm } from "../_components/priceform"
+import { ChapterForm } from "../_components/chapters-form"
 
 const CourseIdPage = async ({
   params
@@ -28,15 +29,21 @@ const CourseIdPage = async ({
 
   const course = await db.course.findUnique({
     where: {
-      id: params.courseId
+      id: params.courseId,
+      userId
     },
     include: {
       attachments: {
         orderBy: {
           createdAt: "desc",
         },
+      },
+      chapters: {
+        orderBy: {
+          position: "asc",
+        },
       }
-    }
+    },
   });
   const category = await db.category.findMany({
     orderBy: {
@@ -54,7 +61,8 @@ const CourseIdPage = async ({
     course.description,
     course.imageUrl,
     course.price,
-    course.categoryId
+    course.categoryId,
+    course.chapters.some(chapter => chapter.isPublished),
   ];
 
   const totalFields = requiredFields.length;
@@ -76,7 +84,7 @@ const CourseIdPage = async ({
           <div className="flex items-center gap-x-2">
             <IconBadge icon={LayoutDashboard} />
             <h2 className="text-xl">
-              Costmize your course
+              Customize your course
             </h2>
           </div>
 
@@ -109,7 +117,10 @@ const CourseIdPage = async ({
               <h2>Course Chapeter</h2>
             </div>
             <div>
-              TODO: Chapters
+              <ChapterForm
+                initialData={course}
+                courseId={course.id}
+              />
             </div>
           </div>
           <div>
