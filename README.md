@@ -31,6 +31,6 @@ Like any project we will solve problem with followind steps
     2:10:00 (Fardeen)
     2:38:46 (Iqra)
     3:42:59 (fardeen)
-    4:28:20 (fardeen) 
+    4:45:40 (fardeen) 
 
 <!-- http://localhost:3000/teacher/courses/0f1da2cd-a78c-452a-a480-82701c5212ab -->
