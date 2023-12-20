@@ -81,6 +81,13 @@ export const ChapterForm = ({
         }
     }
 
+// onEdit Function
+const onEdit = (id: string) => {
+    router.push(`/teacher/courses/${courseId}/chapters/${id}`);
+}
+
+
+
     return (
         <div className="relative mt-8 border bg-slate-100 rounded-md p-4">
             {isUpdating && (
@@ -128,7 +135,7 @@ export const ChapterForm = ({
                 )}>
                     {!initialData.chapters.length && "No chapters"}
                     <ChapterList 
-                    onEdit={()=>{}}
+                    onEdit={onEdit}
                     onReorder={onReorder} 
                     items={initialData.chapters || []}
                     />
