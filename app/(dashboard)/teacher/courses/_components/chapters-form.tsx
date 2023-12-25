@@ -19,12 +19,10 @@ import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Textarea } from "@/components/ui/textarea";
 import { Chapter, Course } from "@prisma/client";
-import ChapterList from "./chapter-list";
+import { ChaptersList } from "./chapter-list";
 
 interface ChapterFormProps {
-    initialData: Course & {
-        chapters: Chapter[]
-    }
+    initialData: Course & { chapters: Chapter[] }
     courseId: string;
 };
 
@@ -54,7 +52,6 @@ export const ChapterForm = ({
     });
 
     const { isSubmitting, isValid } = form.formState;
-
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             await axios.post(`/api/courses/${courseId}/chapters`, values);
@@ -66,7 +63,7 @@ export const ChapterForm = ({
         }
     }
 
-    const onReorder = async (updateData: {id: string, position: number}[]) => {
+    const onReorder = async (updateData: { id: string, position: number }[]) => {
         try {
             setIsUpdating(true)
             await axios.put(`/api/courses/${courseId}/chapters/reorder`, {
@@ -76,12 +73,13 @@ export const ChapterForm = ({
             router.refresh()
         } catch (error) {
             toast.error("Something Went wrong");
-        } finally{
+        } finally {
             setIsUpdating(false)
         }
     }
 
-    const onEdit = async (id: string) => {
+    const onEdit = (id: string) => {
+        console.log(id) // this is working
         router.push(`/teacher/courses/${courseId}/chapters/${id}`)
     }
 
@@ -131,10 +129,10 @@ export const ChapterForm = ({
                     !initialData.chapters.length && "text-slate-500 italic"
                 )}>
                     {!initialData.chapters.length && "No chapters"}
-                    <ChapterList 
-                    onEdit={onEdit}
-                    onReorder={onReorder} 
-                    items={initialData.chapters || []}
+                    <ChaptersList
+                        onEdit={onEdit}
+                        onReorder={onReorder}
+                        items={initialData.chapters || []}
                     />
                 </div>
             )}
