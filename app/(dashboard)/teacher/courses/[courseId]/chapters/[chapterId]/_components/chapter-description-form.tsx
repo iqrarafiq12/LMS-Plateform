@@ -32,7 +32,7 @@ const formSchema = z.object({
     description: z.string().min(1),
 });
 
-export const ChapterDescriptionForm = ({
+const ChapterDescriptionForm = ({
     initialData,
     courseId,
     chapterId
@@ -60,7 +60,7 @@ export const ChapterDescriptionForm = ({
             router.refresh();
         } catch (error) {
             toast.error("Something Went wrong");
-        }   
+        }
     }
 
     return (
@@ -80,15 +80,15 @@ export const ChapterDescriptionForm = ({
                 </Button>
             </div>
             {!isEditing && (
-                <div className={cn("text-sm mt-2", 
-                !initialData.description && "text-slate-500 italic")}>
-                    {!initialData.description &&  "No Description"}
+                <div className={cn("text-sm mt-2",
+                    !initialData.description && "text-slate-500 italic")}>
+                    {!initialData.description && "No Description"}
                     {initialData.description && (
-                        <Preview 
+                        <Preview
                             value={initialData.description}
                         />
                     )}
-                    </div>
+                </div>
             )}
 
             {/* IN THIS SECTION HAS BEEN ERROR */}
@@ -102,7 +102,7 @@ export const ChapterDescriptionForm = ({
                                 <FormControl>
                                     <Editor {...field} />
                                 </FormControl>
-                                <FormMessage/>
+                                <FormMessage />
                             </FormItem>
                         )} />
                         <div className="flex items-center gap-x-2">
@@ -114,3 +114,4 @@ export const ChapterDescriptionForm = ({
         </div>
     )
 }
+export default ChapterDescriptionForm

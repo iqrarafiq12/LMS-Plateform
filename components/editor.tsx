@@ -10,7 +10,7 @@ interface EditorProps {
   value: string;
 }
 
-export const Editor = ({ onChange, value }: EditorProps) => {
+const Editor = ({ onChange, value }: EditorProps) => {
   // ENTIRE FUNCTION
   const ReactQuill = useMemo(
     () => dynamic(() => import("react-quill"), { ssr: false }),
@@ -18,7 +18,7 @@ export const Editor = ({ onChange, value }: EditorProps) => {
   );
 
   return(
-    <div className="bg-white">
+    <div className="bg-cyan-50">
         <ReactQuill 
         theme="snow"
         value={value}
@@ -27,3 +27,4 @@ export const Editor = ({ onChange, value }: EditorProps) => {
     </div>
   )
 };
+export default Editor

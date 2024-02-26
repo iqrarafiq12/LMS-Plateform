@@ -1,13 +1,9 @@
 import { authMiddleware } from "@clerk/nextjs";
  
-// This example protects all routes including api/trpc routes
-// Please edit this to allow other routes to be public as needed.
-// See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your Middleware
 export default authMiddleware({
-  publicRoutes:['/api/uploadthing'] // You need to make this route public to access image url to dispay it on the frontend.
+  publicRoutes: ['/api', '/trpc'], // Make all routes under /api and /trpc public
 });
  
 export const config = {
   matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
 };
- 

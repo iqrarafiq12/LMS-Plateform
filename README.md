@@ -35,5 +35,5 @@ Like any project we will solve problem with followind steps
     4:03:25 (Iqra)
     4:45:40 (fardeen) 
     5:00:14 (fardeen)
-     5:31:05 (IQRA)
+    5:31:05 (IQRA)
 <!-- http://localhost:3000/teacher/courses/0f1da2cd-a78c-452a-a480-82701c5212ab -->

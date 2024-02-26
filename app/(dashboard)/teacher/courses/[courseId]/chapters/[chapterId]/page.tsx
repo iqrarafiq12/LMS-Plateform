@@ -1,4 +1,3 @@
-
 import { IconBadge } from "@/components/icon-badge";
 import { db } from "@/lib/db";
 import { auth } from "@clerk/nextjs";
@@ -7,17 +6,15 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 import { ChapterTitleForm } from "./_components/chapter-title-form"
-import { ChapterDescriptionForm } from "./_components/chapter-description-form";
 import { ChapterAccessForm } from "./_components/chapter-access-form";
-
+import ChapterVideoForm from "./_components/chapter-video-form";
+import ChapterDescriptionForm from "./_components/chapter-description-form";
 
 const ChapterIdPage = async ({
   params,
 }: {
   params: { courseId: string; chapterId: string };
 }) => {
-  console.log(params.chapterId) // Msla yaha par tha chapterId jo hum yaha get krhay hai usi same name ka folder hona chayay: e.g [chapterId]. Is wja se hum ko ChapterId nhi mil parha tha aur bug arha tha
-  console.log(params.courseId) //! Isko remove krdena prh kr
   const { userId } = auth();
   if (!userId) {
     return redirect("/");
@@ -70,17 +67,17 @@ const ChapterIdPage = async ({
               <IconBadge icon={LayoutDashboard} />
               <h2 className="text-xl">Customize your chapter</h2>
             </div>
-         
-<ChapterTitleForm
-   initialData={chapter}
-  courseId={params.courseId}
-  chapterId={params.chapterId}
-  />
-  <ChapterDescriptionForm 
-      initialData={chapter}
-      courseId={params.courseId}
-     chapterId={params.chapterId} 
-   />
+
+            <ChapterTitleForm
+              initialData={chapter}
+              courseId={params.courseId}
+              chapterId={params.chapterId}
+            />
+            <ChapterDescriptionForm
+              initialData={chapter}
+              courseId={params.courseId}
+              chapterId={params.chapterId}
+            />
           </div>
 
           <div>
@@ -90,10 +87,10 @@ const ChapterIdPage = async ({
                 Access Settings
               </h2>
             </div>
-            <ChapterAccessForm 
-             initialData={chapter}
-             courseId={params.courseId}
-             chapterId={params.chapterId} 
+            <ChapterAccessForm
+              initialData={chapter}
+              courseId={params.courseId}
+              chapterId={params.chapterId}
             />
 
           </div>
@@ -102,9 +99,14 @@ const ChapterIdPage = async ({
           <div className="flex items-center gap-x-2">
             <IconBadge icon={Video} />
             <h2 className="text-xl">
-Add A Video
+              Add A Video
             </h2>
           </div>
+          <ChapterVideoForm
+            initialData={chapter}
+            courseId={params.courseId}
+            chapterId={params.chapterId}
+          />
         </div>
       </div>
     </div>

@@ -10,7 +10,7 @@ interface FileUploadProps {
   endpoint: keyof typeof ourFileRouter;
 };
 
-export const FileUpload = ({
+const FileUpload = ({
   onChange,
   endpoint
 }: FileUploadProps) => {
@@ -26,3 +26,4 @@ export const FileUpload = ({
     />
   )
 }
+export default FileUpload
